@@ -1,0 +1,10 @@
+ 
+
+    A FAZER:
+configurar thread executer para meter max numero de threads p n crashar o pc
+hysterix
+exceptions
+
+
+    APRENDER:
+Mono
