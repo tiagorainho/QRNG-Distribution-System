@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import qrng.PrimeService.Generator.Generator;
 import qrng.PrimeService.Generator.GeneratorService;
 import qrng.PrimeService.Generator.GeneratorType;
 
@@ -35,8 +36,11 @@ public class PrimeService {
                 .collect(Collectors.toList());
             
             trusted_generators.stream().forEach(generator -> {
-                if(!generators.contains(generator))
-                    throw new IllegalStateException(String.format("Generator %s does not exist", generator));
+                if(!generators.contains(generator)) {
+                    Generator newGenerator = generatorService.getGenerator(generator);
+                    generatorService.addGenerator(newGenerator);
+                    //throw new IllegalStateException(String.format("Generator '%s' does not exist", generator));
+                }
             });
         }
 

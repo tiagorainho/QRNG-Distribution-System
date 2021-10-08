@@ -32,6 +32,11 @@ public class Generator {
         this.cache_size = cache_size;
     }
 
+    public Generator() {
+        this.randomNumbers = new ArrayList<>();
+        this.cache_size = 100;
+    }
+
     public String getName() {
         return this.name;
     }

@@ -31,12 +31,7 @@ public class RandomNumbersServiceAsync {
     }
 
     public List<Byte> requestRandomBytes(String url , int bytesToRetrieve) {
-        // receive the number of bytes per element from the array of random bits
-        return randomNumberClient.requestRandomBytes(url, bytesToRetrieve);
-
-        // create list from those bits
-
-        
+        return randomNumberClient.requestRandomBytes(url, bytesToRetrieve);        
         //return Stream.generate(() -> Byte.valueOf((byte)1)).limit(bytesToRetrieve).toList();
     }
     

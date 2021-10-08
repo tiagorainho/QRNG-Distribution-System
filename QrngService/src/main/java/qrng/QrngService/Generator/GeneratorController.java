@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +32,7 @@ public class GeneratorController {
     ) {
         generatorService.registry(
             generator.getName(),
-            (generator.getUrl() == null) ? request.getRemoteAddr(): generator.getUrl(),
+            (generator.getUrl() == null) ? "http://" + request.getRemoteAddr() + ":" + request.getRemotePort(): generator.getUrl(),
             generator.getType());
 
         return new ResponseEntity<>(
@@ -44,6 +45,14 @@ public class GeneratorController {
     public ResponseEntity<Map<String, List<Generator>>> getGeneratorsName() {
         return new ResponseEntity<>(
             Map.of("generators", generatorService.generators()),
+            HttpStatus.OK
+        );
+    }
+
+    @RequestMapping(value="/{generatorName}", method=RequestMethod.GET)
+    public ResponseEntity<Generator> getGenerators(@PathVariable String generatorName) {
+        return new ResponseEntity<>(
+            generatorService.getGeneratorByName(generatorName),
             HttpStatus.OK
         );
     }

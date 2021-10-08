@@ -3,6 +3,7 @@ package qrng.PrimeService.Generator;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,12 +33,20 @@ public class GeneratorService {
     }
 
     public Generator getGenerator(String name) {
-        return generatorRepository.findGeneratorByName(name)
+        Optional<Generator> generator = generatorRepository.findGeneratorByName(name);
+        if(generator.isEmpty()) {
+            return this.rnService.getGeneratorByName(name);
+        }
+        return generator
             .orElseThrow(
                 () -> {
                     throw new IllegalStateException("Generator not found");
                 }
             );
+    }
+
+    public void addGenerator(Generator generator) {
+        generatorRepository.insert(generator);
     }
 
     public List<BigInteger> popRandomNumbers(String generator_name, int n) {

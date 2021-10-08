@@ -1,9 +1,12 @@
 package qrng.QrngService.Generator;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import qrng.QrngService.RandomNumbers.RandomNumbersService;
 
 @Service
 public class GeneratorService {
@@ -12,13 +15,17 @@ public class GeneratorService {
 
     @Autowired
     private final GeneratorRepository generatorRepository;
+    @Autowired
+    private final RandomNumbersService randomNumbersService;
     
-    public GeneratorService(GeneratorRepository generatorRepository) {
+    public GeneratorService(GeneratorRepository generatorRepository, RandomNumbersService randomNumbersService) {
         this.generatorRepository = generatorRepository;
+        this.randomNumbersService = randomNumbersService;
     }
 
     public void registry(String name, String url, GeneratorType type) {
         generatorRepository.insert(new Generator(name, url, type, cache_size));
+        randomNumbersService.addRandomNumbers(name, List.of());
     }
 
     public List<Generator> generators() {
@@ -29,6 +36,14 @@ public class GeneratorService {
         return generatorRepository.findAll().stream()
             .map(generator -> generator.getName())
             .toList();
+    }
+
+    public Generator getGeneratorByName(String name) {
+        Optional<Generator> generator = generatorRepository.findGeneratorByName(name);
+        if(generator.isPresent()) {
+            return generator.get();
+        }
+        return null;
     }
 
 

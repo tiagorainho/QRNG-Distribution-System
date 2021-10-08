@@ -17,9 +17,9 @@ def get_random():
     )
 
 def registry():
-    endpoint = 'http://localhost:8000'
+    QRNG_endpoint = 'http://192.168.1.188:8000'
     requests.post(
-        url = endpoint + '/api/generator',
+        url = QRNG_endpoint + '/api/generator',
         headers = {'content-type':'application/json', 'Authorization': 'key'},
         json = {
             'name': 'QRNG2',
@@ -31,4 +31,4 @@ def registry():
 
 if __name__ == '__main__':
     registry()
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=5000)

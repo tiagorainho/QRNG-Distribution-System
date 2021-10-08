@@ -91,7 +91,7 @@ public class RandomNumbersService {
     }
 
     public void addRandomNumbers(String generator) {
-        this.addRandomNumbers(generator);
+        this.addRandomNumbers(generator, null);
     }
     
 }

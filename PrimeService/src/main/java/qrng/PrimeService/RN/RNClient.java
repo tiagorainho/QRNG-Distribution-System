@@ -22,6 +22,21 @@ public class RNClient implements RNClientInterface {
     public RNClient(WebClient.Builder webClientBuilder) {
         this.webClientBuilder = webClientBuilder;
     }
+
+    public Generator getGeneratorByName(String name) {
+        return webClientBuilder
+            .baseUrl("http://qrng-service/")
+            .build()
+            .get()
+            .uri(uri -> uri
+                .path("api/generator/" + name)
+                .build()
+            )
+            .retrieve()
+            .bodyToMono(Generator.class)
+            .timeout(REQUEST_TIMEOUT)
+            .block();
+    }
     
     public List<Long> requestRandomNumbers(Generator generator, long n) {
         return webClientBuilder

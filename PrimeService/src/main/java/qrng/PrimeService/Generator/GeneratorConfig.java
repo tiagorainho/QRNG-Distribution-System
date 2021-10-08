@@ -19,8 +19,8 @@ public class GeneratorConfig {
     CommandLineRunner runner(GeneratorRepository generatorRepository, MongoTemplate mongoTemplate) {
         return args -> {
             generatorRepository.deleteAll();
-            addGenerator(generatorRepository, new Generator("IT QRNG", "localhost:8082/api/random/", GeneratorType.QUANTUM, 100));
-            addGenerator(generatorRepository, new Generator("IT QRNG 2", "localhost:8082/api/random/", GeneratorType.PSEUDO_RANDOM, 100));
+            addGenerator(generatorRepository, new Generator("IT QRNG", "localhost:8082/api/random/", GeneratorType.QUANTUM, 50));
+            addGenerator(generatorRepository, new Generator("IT QRNG 2", "localhost:8082/api/random/", GeneratorType.PSEUDO_RANDOM, 50));
         };
     }
 

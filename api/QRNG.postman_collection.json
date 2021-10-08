@@ -13,19 +13,25 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{base_url}}/user/?email=\"tiago.rainho@ua.pt\"",
+							"raw": "{{base_url}}/api/user/",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"api",
 								"user",
 								""
 							],
 							"query": [
 								{
 									"key": "email",
-									"value": "\"tiago.rainho@ua.pt\""
+									"value": "\"tiago.rainho@ua.pt\"",
+									"disabled": true
 								}
 							]
 						}
@@ -38,11 +44,13 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/API_KEY/?email=\"tiago.rainho@ua.pt\"&previous_key=123456789",
+							"raw": "{{base_url}}/api/user/API_KEY/?email=\"tiago.rainho@ua.pt\"&previous_key=123456789",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"api",
+								"user",
 								"API_KEY",
 								""
 							],
@@ -66,11 +74,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/user?email=\"tiago.rainho@ua.pt\"",
+							"raw": "{{base_url}}/api/user?email=\"tiago.rainho@ua.pt\"",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"api",
 								"user"
 							],
 							"query": [
@@ -89,12 +98,12 @@
 			"name": "QRNG Service",
 			"item": [
 				{
-					"name": "get random number",
+					"name": "get random bits",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/random/",
+							"raw": "{{base_url}}/api/random/?trusted_generator=IT QRNG&bits=64&n=10",
 							"host": [
 								"{{base_url}}"
 							],
@@ -107,32 +116,17 @@
 								{
 									"key": "trusted_generator",
 									"value": "IT QRNG",
-									"description": "accepted generators for the random numbers generation",
-									"disabled": true
+									"description": "accepted generators for the random numbers generation"
 								},
 								{
 									"key": "bits",
 									"value": "64",
-									"description": "number of bits to be generated",
-									"disabled": true
+									"description": "number of bits to be generated"
 								},
 								{
 									"key": "n",
 									"value": "10",
-									"description": "how many random numbers",
-									"disabled": true
-								},
-								{
-									"key": "min",
-									"value": "1",
-									"description": "min value",
-									"disabled": true
-								},
-								{
-									"key": "max",
-									"value": "1",
-									"description": "max value",
-									"disabled": true
+									"description": "how many random numbers"
 								},
 								{
 									"key": "trusted_generator",
@@ -155,54 +149,32 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/random/?trusted_generator=IT QRNG&trusted_generator=IT QRNG 2",
+							"raw": "{{base_url}}/api/generator",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"random",
-								""
+								"generator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get generator by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/generator/QRNG2",
+							"host": [
+								"{{base_url}}"
 							],
-							"query": [
-								{
-									"key": "trusted_generator",
-									"value": "IT QRNG",
-									"description": "accepted generators for the random numbers generation"
-								},
-								{
-									"key": "bits",
-									"value": "64",
-									"description": "number of bits to be generated",
-									"disabled": true
-								},
-								{
-									"key": "n",
-									"value": "10",
-									"description": "how many random numbers",
-									"disabled": true
-								},
-								{
-									"key": "min",
-									"value": "1",
-									"description": "min value",
-									"disabled": true
-								},
-								{
-									"key": "max",
-									"value": "1",
-									"description": "max value",
-									"disabled": true
-								},
-								{
-									"key": "trusted_generator",
-									"value": "IT QRNG 2"
-								},
-								{
-									"key": "trusted_generator",
-									"value": "QRNG2",
-									"disabled": true
-								}
+							"path": [
+								"api",
+								"generator",
+								"QRNG2"
 							]
 						}
 					},
@@ -215,7 +187,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"QRNG2\",\n    \"type\": \"QUANTUM\",\n    \"url\": \"boasss\"\n}",
+							"raw": "{\n    \"name\": \"QRN1G2\",\n    \"type\": \"QUANTUM\",\n    \"url\": \"boasss\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -223,13 +195,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/random/generator",
+							"raw": "{{base_url}}/api/generator",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"random",
 								"generator"
 							]
 						}
@@ -259,7 +230,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/prime/?n=1000&trusted_generator=IT QRNG&trusted_generator=IT QRNG 2&bits=201&certainty=20",
+							"raw": "{{base_url}}/api/prime/?n=1000&trusted_generator=IT QRNG&bits=60&certainty=20",
 							"host": [
 								"{{base_url}}"
 							],
@@ -279,11 +250,12 @@
 								},
 								{
 									"key": "trusted_generator",
-									"value": "IT QRNG 2"
+									"value": "IT QRNG 2",
+									"disabled": true
 								},
 								{
 									"key": "bits",
-									"value": "201"
+									"value": "60"
 								},
 								{
 									"key": "certainty",
@@ -314,14 +286,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/user",
+							"raw": "localhost:8080/api/user",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"v1",
 								"user"
 							]
 						}
@@ -334,14 +305,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/user/",
+							"raw": "localhost:9000/api/user/",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "9000",
 							"path": [
 								"api",
-								"v1",
 								"user",
 								""
 							]
@@ -355,14 +325,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/user/9e0361dd-9677-4444-967b-724c52d66eb3",
+							"raw": "localhost:8080/api/user/9e0361dd-9677-4444-967b-724c52d66eb3",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"v1",
 								"user",
 								"9e0361dd-9677-4444-967b-724c52d66eb3"
 							]
@@ -385,14 +354,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/user/a43392a3-4f72-4470-8af0-c953c7b2f87f?name=Tiago1234",
+							"raw": "localhost:8080/api/user/a43392a3-4f72-4470-8af0-c953c7b2f87f?name=Tiago1234",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"v1",
 								"user",
 								"a43392a3-4f72-4470-8af0-c953c7b2f87f"
 							],
@@ -412,14 +380,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/user/65f33050-4560-4709-932c-daaf0f2ffa84",
+							"raw": "localhost:8080/api/user/65f33050-4560-4709-932c-daaf0f2ffa84",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"v1",
 								"user",
 								"65f33050-4560-4709-932c-daaf0f2ffa84"
 							]
@@ -430,35 +397,44 @@
 			]
 		},
 		{
-			"name": "QRNG API GATEWAY",
-			"item": []
-		},
-		{
-			"name": "QRNG Machine",
+			"name": "Public API GATEWAY",
 			"item": [
 				{
-					"name": "registry",
+					"name": "get prime number",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "/registry?name=QRNG IT&type=QUANTUM, PSEUDO-RANDOM",
+							"raw": "{{base_url}}/api/prime/?trusted_generator=QRNG2&n=10&bits=10&certainty=20",
+							"host": [
+								"{{base_url}}"
+							],
 							"path": [
-								"registry"
+								"api",
+								"prime",
+								""
 							],
 							"query": [
 								{
-									"key": "name",
-									"value": "QRNG IT"
-								},
-								{
-									"key": "url",
-									"value": "192.312.23",
+									"key": "trusted_generator",
+									"value": "IT QRNG",
 									"disabled": true
 								},
 								{
-									"key": "type",
-									"value": "QUANTUM, PSEUDO-RANDOM"
+									"key": "trusted_generator",
+									"value": "QRNG2"
+								},
+								{
+									"key": "n",
+									"value": "10"
+								},
+								{
+									"key": "bits",
+									"value": "10"
+								},
+								{
+									"key": "certainty",
+									"value": "20"
 								}
 							]
 						}
@@ -466,19 +442,453 @@
 					"response": []
 				},
 				{
+					"name": "get random bits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/random/?bits=10&n=10&trusted_generator=QRNG2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"random",
+								""
+							],
+							"query": [
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG",
+									"disabled": true
+								},
+								{
+									"key": "bits",
+									"value": "10"
+								},
+								{
+									"key": "n",
+									"value": "10"
+								},
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG 2",
+									"disabled": true
+								},
+								{
+									"key": "trusted_generator",
+									"value": "QRNG2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get generators",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/generator",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"generator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add generator",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"QRNG Preferido do Nuno\",\n    \"type\": \"QUANTUM\",\n    \"url\": \"boasss\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/generator/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"generator",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "{{api_key}}",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "Authorization",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Private API GATEWAY",
+			"item": [
+				{
+					"name": "add user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"tiago2222\",\n    \"email\": \"baaadad2a@ua.pt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/api/user/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/user/9e0361dd-9677-4444-967b-724c52d66eb3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"9e0361dd-9677-4444-967b-724c52d66eb3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/a43392a3-4f72-4470-8af0-c953c7b2f87f?name=Tiago1234",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"a43392a3-4f72-4470-8af0-c953c7b2f87f"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Tiago1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/user/65f33050-4560-4709-932c-daaf0f2ffa84",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"65f33050-4560-4709-932c-daaf0f2ffa84"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get prime number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/prime/?n=10&trusted_generator=IT QRNG&bits=10&certainty=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"prime",
+								""
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "10"
+								},
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG"
+								},
+								{
+									"key": "bits",
+									"value": "10"
+								},
+								{
+									"key": "certainty",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get random bits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/random/?trusted_generator=IT QRNG&bits=20&n=10&trusted_generator=IT QRNG 2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"random",
+								""
+							],
+							"query": [
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG"
+								},
+								{
+									"key": "bits",
+									"value": "20"
+								},
+								{
+									"key": "n",
+									"value": "10"
+								},
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG 2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get generators",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/generator/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"generator",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add generator",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"QRNG22\",\n    \"type\": \"QUANTUM\",\n    \"url\": \"boasss\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/generator/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"generator",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "{{api_key}}",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "Authorization",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "QRNG Machine",
+			"item": [
+				{
 					"name": "get bits",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "/random?bits=10",
+							"raw": "{{base_url}}/random?bytes=1&n=3",
+							"host": [
+								"{{base_url}}"
+							],
 							"path": [
 								"random"
 							],
 							"query": [
 								{
-									"key": "bits",
-									"value": "10"
+									"key": "bytes",
+									"value": "1"
+								},
+								{
+									"key": "n",
+									"value": "3"
 								}
 							]
 						}

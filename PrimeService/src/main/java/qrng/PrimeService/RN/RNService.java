@@ -23,4 +23,8 @@ public class RNService {
         //return Stream.generate(() -> new BigInteger(64, new Random()).longValue()).limit(n).collect(Collectors.toList());
     }
 
+    public Generator getGeneratorByName(String name) {
+        return this.rnClient.getGeneratorByName(name);
+    }
+
 }
