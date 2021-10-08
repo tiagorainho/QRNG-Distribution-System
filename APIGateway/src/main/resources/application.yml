@@ -1,0 +1,54 @@
+spring:
+    application.name: api-gateway
+
+    cloud:
+        loadbalancer:
+            ribbon:
+                enabled = false
+        gateway:
+            discovery:
+                locator:
+                    enabled: true
+                    lower-case-service-id: true
+            routes:
+                -   id: qrng-service
+                    uri: lb://QRNG-SERVICE
+                    predicates:
+                        - Path=/api/random
+
+                -   id: prime-service
+                    uri: lb://PRIME-SERVICE
+                    predicates:
+                        - Path=/api/prime
+
+                -   id: qrng-service-add-generator
+                    uri: lb://QRNG-SERVICE
+                    predicates:
+                        - Path=/api/generator
+                        - Method=POST
+                    filters:
+                        -   name: AuthFilter
+                            args:
+                                type: "trusted"
+
+
+                -   id: qrng-service-generators
+                    uri: lb://QRNG-SERVICE
+                    predicates:
+                        - Path=/api/generator
+
+                
+
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+server:
+  port: 8000
+  error:
+    include-message: always
+
+
+
+

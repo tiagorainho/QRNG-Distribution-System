@@ -1,0 +1,532 @@
+{
+	"info": {
+		"_postman_id": "59b30ace-2c76-405a-a817-3b78d6729489",
+		"name": "QRNG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth Service",
+			"item": [
+				{
+					"name": "add user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/?email=\"tiago.rainho@ua.pt\"",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "\"tiago.rainho@ua.pt\""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update API Key",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/API_KEY/?email=\"tiago.rainho@ua.pt\"&previous_key=123456789",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API_KEY",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "\"tiago.rainho@ua.pt\""
+								},
+								{
+									"key": "previous_key",
+									"value": "123456789"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user?email=\"tiago.rainho@ua.pt\"",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "\"tiago.rainho@ua.pt\""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QRNG Service",
+			"item": [
+				{
+					"name": "get random number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/random/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"random",
+								""
+							],
+							"query": [
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG",
+									"description": "accepted generators for the random numbers generation",
+									"disabled": true
+								},
+								{
+									"key": "bits",
+									"value": "64",
+									"description": "number of bits to be generated",
+									"disabled": true
+								},
+								{
+									"key": "n",
+									"value": "10",
+									"description": "how many random numbers",
+									"disabled": true
+								},
+								{
+									"key": "min",
+									"value": "1",
+									"description": "min value",
+									"disabled": true
+								},
+								{
+									"key": "max",
+									"value": "1",
+									"description": "max value",
+									"disabled": true
+								},
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG 2",
+									"disabled": true
+								},
+								{
+									"key": "trusted_generator",
+									"value": "QRNG2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get generators",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/random/?trusted_generator=IT QRNG&trusted_generator=IT QRNG 2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"random",
+								""
+							],
+							"query": [
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG",
+									"description": "accepted generators for the random numbers generation"
+								},
+								{
+									"key": "bits",
+									"value": "64",
+									"description": "number of bits to be generated",
+									"disabled": true
+								},
+								{
+									"key": "n",
+									"value": "10",
+									"description": "how many random numbers",
+									"disabled": true
+								},
+								{
+									"key": "min",
+									"value": "1",
+									"description": "min value",
+									"disabled": true
+								},
+								{
+									"key": "max",
+									"value": "1",
+									"description": "max value",
+									"disabled": true
+								},
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG 2"
+								},
+								{
+									"key": "trusted_generator",
+									"value": "QRNG2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add generator",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"QRNG2\",\n    \"type\": \"QUANTUM\",\n    \"url\": \"boasss\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/random/generator",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"random",
+								"generator"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prime Service",
+			"item": [
+				{
+					"name": "get prime number",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/prime/?n=1000&trusted_generator=IT QRNG&trusted_generator=IT QRNG 2&bits=201&certainty=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"prime",
+								""
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "1000"
+								},
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG"
+								},
+								{
+									"key": "trusted_generator",
+									"value": "IT QRNG 2"
+								},
+								{
+									"key": "bits",
+									"value": "201"
+								},
+								{
+									"key": "certainty",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Service",
+			"item": [
+				{
+					"name": "add user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"tiago2222\",\n    \"email\": \"baaadad2a@ua.pt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/user/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/user/9e0361dd-9677-4444-967b-724c52d66eb3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"9e0361dd-9677-4444-967b-724c52d66eb3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/user/a43392a3-4f72-4470-8af0-c953c7b2f87f?name=Tiago1234",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"a43392a3-4f72-4470-8af0-c953c7b2f87f"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Tiago1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/user/65f33050-4560-4709-932c-daaf0f2ffa84",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"65f33050-4560-4709-932c-daaf0f2ffa84"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QRNG API GATEWAY",
+			"item": []
+		},
+		{
+			"name": "QRNG Machine",
+			"item": [
+				{
+					"name": "registry",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "/registry?name=QRNG IT&type=QUANTUM, PSEUDO-RANDOM",
+							"path": [
+								"registry"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "QRNG IT"
+								},
+								{
+									"key": "url",
+									"value": "192.312.23",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "QUANTUM, PSEUDO-RANDOM"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get bits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "/random?bits=10",
+							"path": [
+								"random"
+							],
+							"query": [
+								{
+									"key": "bits",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{api_key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_key",
+			"value": "1234"
+		}
+	]
+}

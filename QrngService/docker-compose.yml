@@ -1,0 +1,32 @@
+version: "3"
+networks: 
+  mongodb_network_qrng:
+services:
+    mongodb_qrng:
+        image: mongo
+        container_name: mongodb_qrng
+        networks:
+          - mongodb_network_qrng
+        ports: 
+            - 27019:27017
+        volumes: 
+            - data:/data
+        environment: 
+            - MONGO_INITDB_ROOT_USERNAME=rootuser
+            - MONGO_INITDB_ROOT_PASSWORD=rootpass
+    mongo-express:
+        image: mongo-express
+        container_name: mongo-express
+        restart: always
+        depends_on:
+          - mongodb_qrng
+        networks:
+          - mongodb_network_qrng
+        ports:
+            - 9082:8081
+        environment:
+            - ME_CONFIG_MONGODB_SERVER=mongodb_qrng
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+volumes: 
+    data: {}
