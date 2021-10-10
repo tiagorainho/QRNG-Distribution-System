@@ -1,0 +1,15 @@
+version: "3"
+
+networks:
+  eureka_bridge:
+    external: true
+
+services:
+  spring_boot_service_discovery_qrng:
+    build: ./
+    ports:
+        - 8001:8000
+    networks:
+      - eureka_bridge
+    environment:
+      eureka_endpoint: http://discovery-service-qrng:8761

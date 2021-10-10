@@ -1,18 +1,38 @@
 version: "3"
-services:
-    users_db:
-      image: postgres:alpine
-      container_name: postgres-users
-      restart: always
-      environment:
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=password
-        - POSTGRES_DB=userdb
-      ports:
-        - 5432:5432
 
-    adminer:
-      image: adminer
-      restart: always
-      ports:
-        - 8080:8080
+networks:
+  usersdb_network_qrng:
+  eureka_bridge:
+    external: true
+
+services:
+  spring-boot-qrng-service:
+    build: ./
+    ports:
+        - 9000:9000
+    networks:
+      - usersdb_network_qrng
+      - eureka_bridge
+    depends_on:
+      - users-db
+    environment:
+      eureka_endpoint: http://discovery-service-qrng:8761
+
+  users-db:
+    image: postgres:alpine
+    container_name: postgres-users
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=userdb
+    networks:
+      - usersdb_network_qrng
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

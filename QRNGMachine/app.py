@@ -1,9 +1,14 @@
 from types import MethodType
 from flask import Flask, Response, request
-import random, json
-import requests
+import random, json, requests, time
 
 app = Flask(__name__)
+
+isRegistered = False
+api_key = 'key'
+qrng_machine_name = "Machine QRNG"
+machine_type = 'QUANTUM'
+endpoint = 'http://192.168.1.111:5000'
 
 @app.route('/random', methods=['GET'])
 def get_random():
@@ -17,16 +22,29 @@ def get_random():
     )
 
 def registry():
-    QRNG_endpoint = 'http://192.168.1.188:8000'
-    requests.post(
-        url = QRNG_endpoint + '/api/generator',
-        headers = {'content-type':'application/json', 'Authorization': 'key'},
-        json = {
-            'name': 'QRNG2',
-            'type': 'QUANTUM',
-            'url': 'http://192.168.1.188:5000'
-        }
-    )
+    global isRegistered, api_key, qrng_machine_name, machine_type, endpoint
+    QRNG_endpoint = 'http://192.168.1.111:8001'
+    while(not isRegistered):
+        try:
+            response = requests.post(
+                url = QRNG_endpoint + '/api/generator',
+                headers = {'content-type':'application/json', 'Authorization': api_key},
+                json = {
+                    'name': qrng_machine_name,
+                    'type': machine_type,
+                    'url': endpoint
+                },
+                timeout=2
+            )
+            print(response.status_code)
+            isRegistered = int(response.status_code / 100) == 2
+            if isRegistered:
+                print("Registried with success")
+                return
+        except Exception:
+            print("Error at the registry with " + QRNG_endpoint)
+        if not isRegistered: time.sleep(3)
+    
 
 
 if __name__ == '__main__':

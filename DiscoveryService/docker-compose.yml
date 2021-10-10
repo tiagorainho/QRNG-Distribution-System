@@ -1,0 +1,12 @@
+version: "3"
+networks: 
+  eureka_bridge:
+    external: true
+
+services:
+  discovery-service-qrng:
+    build: ./
+    ports:
+      - 8761:8761
+    networks:
+      - eureka_bridge

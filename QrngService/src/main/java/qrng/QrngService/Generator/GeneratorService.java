@@ -2,6 +2,7 @@ package qrng.QrngService.Generator;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class GeneratorService {
     public List<String> generatorsName() {
         return generatorRepository.findAll().stream()
             .map(generator -> generator.getName())
-            .toList();
+            .collect(Collectors.toList());
     }
 
     public Generator getGeneratorByName(String name) {

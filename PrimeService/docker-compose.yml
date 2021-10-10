@@ -1,32 +1,48 @@
 version: "3"
 networks: 
   mongodb_network_prime:
+  eureka_bridge:
+    external: true
+
 services:
-    mongodb_prime:
-        image: mongo
-        container_name: mongodb_prime
-        networks:
-          - mongodb_network_prime
-        ports:
-            - 27018:27017
-        volumes: 
-            - data:/data
-        environment: 
-            - MONGO_INITDB_ROOT_USERNAME=rootuser
-            - MONGO_INITDB_ROOT_PASSWORD=rootpass
-    mongo-express-prime:
-        image: mongo-express
-        container_name: mongo-express-prime
-        restart: always
-        depends_on:
-          - mongodb_prime
-        networks:
-          - mongodb_network_prime
-        ports:
-            - 9083:8081
-        environment:
-            - ME_CONFIG_MONGODB_SERVER=mongodb_prime
-            - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
-            - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+  prime_service:
+    build: ./
+    ports:
+        - 8083:8083
+    networks:
+      - mongodb_network_prime
+      - eureka_bridge
+    depends_on:
+      - mongodb_prime
+    environment:
+      eureka_endpoint: http://discovery-service-qrng:8761
+
+  mongodb_prime:
+    image: mongo
+    container_name: mongodb_prime
+    networks:
+      - mongodb_network_prime
+    ports:
+      - 27019:27017
+    volumes: 
+      - data:/data
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=rootuser
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass
+          
+  mongo-express-prime:
+    image: mongo-express
+    container_name: mongo-express-prime
+    restart: always
+    depends_on:
+      - mongodb_prime
+    networks:
+      - mongodb_network_prime
+    ports:
+      - 9083:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb_prime
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
 volumes: 
-    data: {}
+  data: {}

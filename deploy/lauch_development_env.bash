@@ -13,18 +13,18 @@ function deploy_docker_container {
 
 
 
-deploy_docker_container "QrngService"
+#deploy_docker_container "QrngService"
 deploy_docker_container "PrimeService"
 deploy_docker_container "UserService"
 
 
 start_service "DiscoveryService" &
 sleep 3
-start_service "QrngService" &
+#start_service "QrngService" &
 start_service "PrimeService" &
 start_service "APIGateway" &
 start_service "UserService" &
 
-sleep 3
+#sleep 3
 
-sudo docker-compose ../QRNGMachine/docker-compose up --build
+#sudo docker-compose ../QRNGMachine/docker-compose up --build
