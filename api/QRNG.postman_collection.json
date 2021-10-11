@@ -103,10 +103,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/random/?trusted_generator=IT QRNG&bits=64&n=10",
+							"raw": "{{endpoint}}:8082/api/random/?trusted_generator=IT QRNG&bits=10&n=10",
 							"host": [
-								"{{base_url}}"
+								"{{endpoint}}"
 							],
+							"port": "8082",
 							"path": [
 								"api",
 								"random",
@@ -120,7 +121,7 @@
 								},
 								{
 									"key": "bits",
-									"value": "64",
+									"value": "10",
 									"description": "number of bits to be generated"
 								},
 								{
@@ -149,10 +150,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/generator",
+							"raw": "{{endpoint}}:8082/api/generator",
 							"host": [
-								"{{base_url}}"
+								"{{endpoint}}"
 							],
+							"port": "8082",
 							"path": [
 								"api",
 								"generator"
@@ -167,10 +169,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/generator/QRNG2",
+							"raw": "{{endpoint}}:8082/api/generator/QRNG2",
 							"host": [
-								"{{base_url}}"
+								"{{endpoint}}"
 							],
+							"port": "8082",
 							"path": [
 								"api",
 								"generator",
@@ -195,10 +198,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/generator",
+							"raw": "{{endpoint}}:8082/api/generator",
 							"host": [
-								"{{base_url}}"
+								"{{endpoint}}"
 							],
+							"port": "8082",
 							"path": [
 								"api",
 								"generator"
@@ -230,10 +234,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/prime/?n=1000&trusted_generator=IT QRNG&bits=60&certainty=20",
+							"raw": "{{endpoint}}:8083/api/prime/?n=2&trusted_generator=IT QRNG&bits=10&certainty=20",
 							"host": [
-								"{{base_url}}"
+								"{{endpoint}}"
 							],
+							"port": "8083",
 							"path": [
 								"api",
 								"prime",
@@ -242,7 +247,7 @@
 							"query": [
 								{
 									"key": "n",
-									"value": "1000"
+									"value": "2"
 								},
 								{
 									"key": "trusted_generator",
@@ -255,7 +260,7 @@
 								},
 								{
 									"key": "bits",
-									"value": "60"
+									"value": "10"
 								},
 								{
 									"key": "certainty",
@@ -286,11 +291,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/user",
+							"raw": "{{endpoint}}:9000/api/user",
 							"host": [
-								"localhost"
+								"{{endpoint}}"
 							],
-							"port": "8080",
+							"port": "9000",
 							"path": [
 								"api",
 								"user"
@@ -305,9 +310,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:9000/api/user/",
+							"raw": "{{endpoint}}:9000/api/user/",
 							"host": [
-								"localhost"
+								"{{endpoint}}"
 							],
 							"port": "9000",
 							"path": [
@@ -325,11 +330,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/user/9e0361dd-9677-4444-967b-724c52d66eb3",
+							"raw": "{{endpoint}}:9000/api/user/9e0361dd-9677-4444-967b-724c52d66eb3",
 							"host": [
-								"localhost"
+								"{{endpoint}}"
 							],
-							"port": "8080",
+							"port": "9000",
 							"path": [
 								"api",
 								"user",
@@ -354,11 +359,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/user/a43392a3-4f72-4470-8af0-c953c7b2f87f?name=Tiago1234",
+							"raw": "{{endpoint}}:9000/api/user/a43392a3-4f72-4470-8af0-c953c7b2f87f?name=Tiago1234",
 							"host": [
-								"localhost"
+								"{{endpoint}}"
 							],
-							"port": "8080",
+							"port": "9000",
 							"path": [
 								"api",
 								"user",
@@ -380,11 +385,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/user/65f33050-4560-4709-932c-daaf0f2ffa84",
+							"raw": "{{endpoint}}:9000/api/user/65f33050-4560-4709-932c-daaf0f2ffa84",
 							"host": [
-								"localhost"
+								"{{endpoint}}"
 							],
-							"port": "8080",
+							"port": "9000",
 							"path": [
 								"api",
 								"user",
@@ -405,10 +410,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/prime/?trusted_generator=QRNG2&n=10&bits=10&certainty=20",
+							"raw": "{{endpoint}}:8001/api/prime/?trusted_generator=IT QRNG&n=2&bits=10&trusted_generator=QRNG Adrianocas",
 							"host": [
-								"{{base_url}}"
+								"{{endpoint}}"
 							],
+							"port": "8001",
 							"path": [
 								"api",
 								"prime",
@@ -417,16 +423,16 @@
 							"query": [
 								{
 									"key": "trusted_generator",
-									"value": "IT QRNG",
-									"disabled": true
+									"value": "IT QRNG"
 								},
 								{
 									"key": "trusted_generator",
-									"value": "QRNG2"
+									"value": "QRNG2",
+									"disabled": true
 								},
 								{
 									"key": "n",
-									"value": "10"
+									"value": "2"
 								},
 								{
 									"key": "bits",
@@ -434,7 +440,12 @@
 								},
 								{
 									"key": "certainty",
-									"value": "20"
+									"value": "20",
+									"disabled": true
+								},
+								{
+									"key": "trusted_generator",
+									"value": "QRNG Adrianocas"
 								}
 							]
 						}
@@ -447,10 +458,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/random/?bits=10&n=10&trusted_generator=QRNG2",
+							"raw": "{{endpoint}}:8001/api/random/?bits=100&n=10&trusted_generator=QRNG Adrianocas",
 							"host": [
-								"{{base_url}}"
+								"{{endpoint}}"
 							],
+							"port": "8001",
 							"path": [
 								"api",
 								"random",
@@ -464,7 +476,7 @@
 								},
 								{
 									"key": "bits",
-									"value": "10"
+									"value": "100"
 								},
 								{
 									"key": "n",
@@ -477,7 +489,12 @@
 								},
 								{
 									"key": "trusted_generator",
-									"value": "QRNG2"
+									"value": "QRNG2",
+									"disabled": true
+								},
+								{
+									"key": "trusted_generator",
+									"value": "QRNG Adrianocas"
 								}
 							]
 						}
@@ -497,10 +514,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/generator",
+							"raw": "{{endpoint}}:8001/api/generator",
 							"host": [
-								"{{base_url}}"
+								"{{endpoint}}"
 							],
+							"port": "8001",
 							"path": [
 								"api",
 								"generator"
@@ -524,10 +542,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/generator/",
+							"raw": "{{endpoint}}:8001/api/generator/",
 							"host": [
-								"{{base_url}}"
+								"{{endpoint}}"
 							],
+							"port": "8001",
 							"path": [
 								"api",
 								"generator",

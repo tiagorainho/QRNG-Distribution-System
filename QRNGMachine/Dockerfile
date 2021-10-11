@@ -7,4 +7,5 @@ COPY . .
 RUN pip install -r requirements.txt
 
 
-CMD ["python", "app.py"]
+# -u is used for buffering reasons in order to work with time.sleep on python
+CMD ["python3", "-u", "app.py"]
