@@ -7,7 +7,7 @@ app = Flask(__name__)
 api_key = 'key'
 qrng_machine_name = "Machine QRNG"
 machine_type = 'QUANTUM'
-endpoint = 'http://192.168.1.111:5000'
+endpoint = 'http://192.168.44.168:5000'
 
 @app.route('/random', methods=['GET'])
 def get_random():
@@ -22,7 +22,7 @@ def get_random():
 
 def registry(qrng_machine_name, endpoint, machine_type, api_key):
     isRegistered = False
-    QRNG_endpoint = 'http://192.168.1.111:8001'
+    QRNG_endpoint = 'http://192.168.44.168:8001'
     while(not isRegistered):
         response = requests.post(
             url = QRNG_endpoint + '/api/generator',

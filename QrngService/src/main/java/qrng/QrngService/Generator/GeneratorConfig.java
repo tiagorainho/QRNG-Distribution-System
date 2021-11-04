@@ -1,10 +1,8 @@
 package qrng.QrngService.Generator;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

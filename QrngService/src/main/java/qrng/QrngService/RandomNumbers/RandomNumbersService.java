@@ -95,38 +95,3 @@ public class RandomNumbersService {
     }
     
 }
-
-
-/*
-        // get the proper trusted generators in case of default
-        if(trusted_generators.isEmpty()) {
-            trusted_generators = allGenerators;
-        }
-        else {
-            // confirm the generators exist before getting their values            
-            trusted_generators.stream().forEach(generator -> {
-                if(!allGenerators.contains(generator))
-                    throw new IllegalStateException(String.format("Generator '%s' does not exist", generator));
-            });
-        }
-
-        int each = (trusted_generators.size() > 1)? (n / trusted_generators.size() + ((n % trusted_generators.size() > 0)? 1: 0)): n;
-
-        /*
-        trusted_generators.stream()
-            .parallel()
-            .forEach((generator) -> randomNumbersServiceAsync.refillRandomNumbers(generator, "localhost", each));
-            
-        return trusted_generators.stream()
-            .parallel()
-            .map(generator -> Stream.generate(
-                    () -> {
-                        return this.randomNumbersDao.pop(generator, bitsToRetrieve);
-                    }
-                )
-                .limit(each).toList()
-            )
-            .flatMap(Collection::stream)
-            .collect(Collectors.toList())
-            .subList(0, n);
-        */

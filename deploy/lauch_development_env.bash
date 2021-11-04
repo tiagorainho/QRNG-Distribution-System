@@ -20,4 +20,4 @@ deploy_spring_boot_service "APIGateway" &
 deploy_spring_boot_service "UserService" &
 deploy_spring_boot_service "QrngService" &
 deploy_spring_boot_service "PrimeService" &
-deploy_spring_boot_service "QRNGMachine" &
+#deploy_spring_boot_service "QRNGMachine" &
