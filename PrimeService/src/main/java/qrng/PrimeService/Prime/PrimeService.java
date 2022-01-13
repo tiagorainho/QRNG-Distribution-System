@@ -53,12 +53,16 @@ public class PrimeService {
                     // generate the prime numbers from the seeds of the random number
                     generatorService.popRandomNumbers(generator, each)
                         .stream()
-                        .map(number -> new BigInteger(bits, certainty, new Random(number.longValue())))
+                        .map(number -> transform_to_prime(number, n, bits, certainty))
                         .collect(Collectors.toList())
             )
             .flatMap(Collection::stream)
             .collect(Collectors.toList())
             .subList(0, n);
+    }
+
+    public BigInteger transform_to_prime(BigInteger number, int n, int bits, int certainty) {
+        return new BigInteger(bits, certainty, new Random(number.longValue()));
     }
     
 }

@@ -18,8 +18,8 @@ public class GeneratorConfig {
     CommandLineRunner runner(GeneratorRepository generatorRepository, MongoTemplate mongoTemplate, RandomNumbersService randomNumbersService) {
         return args -> {
             generatorRepository.deleteAll();
-            addGenerator(generatorRepository, randomNumbersService, new Generator("IT QRNG", "localhost", GeneratorType.QUANTUM, 20));
-            addGenerator(generatorRepository, randomNumbersService, new Generator("IT QRNG 2", "local", GeneratorType.PSEUDO_RANDOM, 20));
+            addGenerator(generatorRepository, randomNumbersService, new Generator("IT QRNG", "localhost", GeneratorType.QUANTUM, 1000));
+            addGenerator(generatorRepository, randomNumbersService, new Generator("IT QRNG 2", "local", GeneratorType.PSEUDO_RANDOM, 1000));
         };
     }
     

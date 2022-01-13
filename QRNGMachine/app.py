@@ -7,7 +7,7 @@ app = Flask(__name__)
 api_key = 'key'
 qrng_machine_name = "Machine QRNG"
 machine_type = 'QUANTUM'
-endpoint = 'http://192.168.44.168:5000'
+endpoint = 'http://192.168.52.237:5001'
 
 @app.route('/random', methods=['GET'])
 def get_random():
@@ -22,10 +22,10 @@ def get_random():
 
 def registry(qrng_machine_name, endpoint, machine_type, api_key):
     isRegistered = False
-    QRNG_endpoint = 'http://192.168.44.168:8001'
+    QRNG_service_endpoint = 'http://192.168.52.237:8001'
     while(not isRegistered):
         response = requests.post(
-            url = QRNG_endpoint + '/api/generator',
+            url = QRNG_service_endpoint + '/api/generator',
             headers = {'content-type':'application/json', 'Authorization': api_key},
             json = {
                 'name': qrng_machine_name,
@@ -39,7 +39,7 @@ def registry(qrng_machine_name, endpoint, machine_type, api_key):
             print(str(response.status_code) + ": Registried '" + qrng_machine_name + "' with success")
             return
         else:
-            print(str(response.status_code) + ": Error at the registry with " + QRNG_endpoint)
+            print(str(response.status_code) + ": Error at the registry with " + QRNG_service_endpoint)
             time.sleep(3)
 
 if __name__ == '__main__':
