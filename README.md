@@ -15,6 +15,11 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 
+Setup the bridge network for the Eureka Service
+```
+docker network create eureka_bridge
+```
+
 Now we can already use the building tools inside this project.
 
 ## Usage
