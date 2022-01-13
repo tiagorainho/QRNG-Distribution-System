@@ -8,6 +8,7 @@ api_key = 'key'
 qrng_machine_name = "Machine QRNG"
 machine_type = 'QUANTUM'
 endpoint = 'http://192.168.52.237:5001'
+service_endpoint = 'http://192.168.52.237:8001'
 
 @app.route('/random', methods=['GET'])
 def get_random():
@@ -20,9 +21,8 @@ def get_random():
         mimetype="application/json"
     )
 
-def registry(qrng_machine_name, endpoint, machine_type, api_key):
+def registry(qrng_machine_name, endpoint, machine_type, api_key, QRNG_service_endpoint):
     isRegistered = False
-    QRNG_service_endpoint = 'http://192.168.52.237:8001'
     while(not isRegistered):
         response = requests.post(
             url = QRNG_service_endpoint + '/api/generator',
@@ -43,5 +43,5 @@ def registry(qrng_machine_name, endpoint, machine_type, api_key):
             time.sleep(3)
 
 if __name__ == '__main__':
-    registry(qrng_machine_name, endpoint, machine_type, api_key)
+    registry(qrng_machine_name, endpoint, machine_type, api_key, service_endpoint)
     app.run(debug=False, host='0.0.0.0', port=5000)
