@@ -7,8 +7,8 @@ app = Flask(__name__)
 api_key = 'key'
 qrng_machine_name = "Machine QRNG"
 machine_type = 'QUANTUM'
-endpoint = 'http://192.168.52.237:5001'
-service_endpoint = 'http://192.168.52.237:8001'
+endpoint = 'http://192.168.1.75:5001'
+service_endpoint = 'http://192.168.1.75:8001'
 
 @app.route('/random', methods=['GET'])
 def get_random():
