@@ -8,8 +8,8 @@ networks:
 services:
   spring_boot_qrng_service:
     build: ./
-    ports:
-        - 8082:8082
+    deploy:
+      replicas: 2
     networks:
       - mongodb_network_qrng
       - eureka_bridge
